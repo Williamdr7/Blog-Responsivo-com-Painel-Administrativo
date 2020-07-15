@@ -1,0 +1,58 @@
+<%- include ("../../partials/header") %>
+
+    <body>
+        <%-include ("../../partials/navbar") %>
+
+            <div class="container">
+                <hr>
+                <h2>Categorias</h2>
+                <br>
+                <a class="btn btn-primary" href="/admin/categories/new"> Criar Nova Categoria</a>
+                <hr>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Titulo</th>
+                            <th>Slug</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <% categories.forEach(categories => { %>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <%= categories.id %>
+                                </th>
+                                <th>
+                                    <%= categories.titulo %>
+                                </th>
+                                <th>
+                                    <%= categories.slug %>
+                                </th>
+                                <th><button class="btn btn-warning">Editar</button>
+                                    <form style="display: inline" action="/categories/delete" method="POST" onsubmit="confirmar(event, this)">
+                                        <input type="hidden" name="id " value=<%=categories.id %>>
+                                        <button type="submit" class="btn btn-danger">Deletar</button></th>
+                                </form>
+                            </tr>
+
+                            <% }) %>
+                        </tbody>
+
+                </table>
+            </div>
+
+    </body>
+
+    <%-include ("../../partials/footer") %>
+        <script>
+            function confirmar(event, form) {
+                event.preventDefault();
+                confirm("Você Realmente Deseja Deletar essa Categoria? ")
+
+                if (decision) {
+                    form.submit();
+                }
+            }
+        </script>
