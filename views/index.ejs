@@ -1,11 +1,41 @@
 <%- include ("./partials/header") %>
 
     <body>
-        <%-include ("./partials/navbar") %>
+        <%-include ("./partials/homenav") %>
+            <br>
+            <br>
             <div class="container">
+                <div class="jumbotron">
+                    <h1 class="display-4">DevBlog!</h1>
+                    <p class="lead">Bem vindo ao Blog do Desenvolvedor!</p>
+                    <hr class="my-4">
+                    <h2>Veja nossos Artigos!</h2>
+
+                </div>
                 <hr>
-                <h1>Home!</h1>
-                <hr>
+                <% articles.forEach((article) => { %>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>
+                                <%= article.titulo %>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <a href="/<%= article.slug %>" class="btn btn-primary">Ler o Artigo</a>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <% }) %>
+                        <hr>
+                        <div class="row">
+                            <div class="col col-12">
+
+                                <a style="float: right" href="/articles/page/2">Próxima página >></a>
+
+                            </div>
+                        </div>
+                        <hr>
             </div>
     </body>
 

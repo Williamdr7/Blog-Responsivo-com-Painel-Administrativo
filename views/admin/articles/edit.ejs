@@ -1,0 +1,40 @@
+<%- include ("../../partials/header") %>
+
+    <body>
+        <%-include ("../../partials/navbar") %>
+
+            <div class="container">
+                <hr>
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Edição de Artigos</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="/articles/update" method="POST">
+                            <input class="form-control" type="text" name="titulo" value=" <%= article.titulo %>">
+                            <textarea id="article" class="form-control" placeholder="Escreva o Novo Artigo Aqui" name="body"></textarea>
+                            <input type="hidden" name="id" value="<%=article.id%>">
+                            <br>
+                            <button type="submit" class=" btn btn-primary ">Atualizar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none;" id="content">
+                <%-article.body%>
+            </div>
+    </body>
+
+
+    <%-include ("../../partials/footer") %>
+        <script src="/tinymce/tinymce.min.js"></script>
+        <script>
+            tinymce.init({
+                language: 'pt_BR',
+                selector: "#article",
+                plugins: "advlist autolink link image lists print preview hr searchreplace wordcount fullscreen media save table",
+                init_instance_callback: () => {
+                    tinymce.get("article").setContent($("#content").html())
+                }
+            })
+        </script>

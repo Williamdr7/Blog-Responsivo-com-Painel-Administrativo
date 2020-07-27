@@ -18,21 +18,21 @@
                             <th>Ações</th>
                         </tr>
                     </thead>
-                    <% categories.forEach(categories => { %>
+                    <% categories.forEach(category => { %>
                         <tbody>
                             <tr>
                                 <th>
-                                    <%= categories.id %>
+                                    <%= category.id %>
                                 </th>
                                 <th>
-                                    <%= categories.titulo %>
+                                    <%= category.titulo %>
                                 </th>
                                 <th>
-                                    <%= categories.slug %>
+                                    <%= category.slug %>
                                 </th>
-                                <th><button class="btn btn-warning">Editar</button>
+                                <th><a href="/admin/categories/edit/<%= category.id %>" class="btn btn-warning">Editar</a>
                                     <form style="display: inline" action="/categories/delete" method="POST" onsubmit="confirmar(event, this)">
-                                        <input type="hidden" name="id " value=<%=categories.id %>>
+                                        <input type="hidden" name="id" value=" <%= category.id %>">
                                         <button type="submit" class="btn btn-danger">Deletar</button></th>
                                 </form>
                             </tr>
@@ -45,12 +45,12 @@
 
     </body>
 
-    <%-include ("../../partials/footer") %>
+    <%- include("../../partials/footer") %>
         <script>
             function confirmar(event, form) {
                 event.preventDefault();
-                confirm("Você Realmente Deseja Deletar essa Categoria? ")
 
+                var decision = confirm("Você Realmente Deseja Deletar essa Categoria? ")
                 if (decision) {
                     form.submit();
                 }
